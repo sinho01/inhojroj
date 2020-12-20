@@ -5,11 +5,12 @@
     <div>
         <span>차례1</span>|
         <span>차례2</span>|
-        <span>차례3</span>|
+        <span>차례3</span>||
         {% if not user.is_authenticated %}
         <a href="{% url 'accountapp:login' %}?next={{ requst.path }}">
-            <span>login</span>
-        </a>
+            <span>로그인|</span></a>
+        <a href="{% url 'accountapp:create' %}">
+            <span>회원가입</span></a>
         {% else %}
         <a href="{% url 'accountapp:detail' pk=user.pk %}" >
             <span>MyPage</span>

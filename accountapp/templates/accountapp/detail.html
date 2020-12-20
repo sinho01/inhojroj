@@ -12,11 +12,12 @@
             </h2>
 
             {% if target_user == user %}
-            <a href="{% url 'accountapp:update' pk=user.pk %}">
-                <p>
-                    Change Info
-                </p>
-            </a>
+            <div>
+                <a href="{% url 'accountapp:update' pk=target_user.pk %}">
+                    <span>수정|</span></a>
+                <a href="{% url 'accountapp:delete' pk=target_user.pk %}">
+                    <span>삭제</span></a>
+            </div>
             {% endif %}
         </div>
    </div>
