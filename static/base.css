@@ -1,0 +1,15 @@
+.titles {
+      font-family: 'Nanum Brush Script', cursive;
+}
+.footer_nav {
+      font-size: .9rem;
+}
+.align_center {
+    text-align:center; margin: 2rem 0;
+}
+.body_background {
+    height: 20rem;
+    background-color: #38df81;
+    border-radius: 1rem;
+    margin: 2rem;"
+}
