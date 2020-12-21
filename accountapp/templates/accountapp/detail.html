@@ -4,20 +4,39 @@
 
     <div>
         <div style="text-align: center; max-width: 500px; margin: 4rem auto">
-            <p>
-                {{ target_user.date_joined }}
-            </p>
+<!--            <p> {{ target_user.date_joined }} </p>-->
+            {% if target_user.profile %}
+            <img src="{{ target_user.profile.image.url }}" alt="우리아이들"
+                 style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom:2rem">
             <h2 style="font-family: 'NanumSquareB'">
-                {{ target_user.username }}
+                {{ target_user.profile.nickname }}
+                {% if target_user == user %}
+                <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                    수정
+                </a>
+                {% endif %}
             </h2>
+            <h5 style="margin-bottom:3rem">
+                {{ target_user.profile.message }}
+            </h5>
+            {% else %}
+                {% if target_user == user %}
+                <a href="{% url 'profileapp:create' %}">
+                    <h2 style="font-family: 'NanumSquareB'">프로필</h2>
+                </a>
+                {% else %}
+                <h3> 프로파일 등록요망...</h3>
+                {% endif %}
+            {% endif %}
 
+<!--            <h2 style="font-family: 'NanumSquareB'">-->
+<!--                {{ target_user.username }}-->
+<!--            </h2>-->
             {% if target_user == user %}
-            <div>
-                <a href="{% url 'accountapp:update' pk=target_user.pk %}">
-                    <span>수정|</span></a>
-                <a href="{% url 'accountapp:delete' pk=target_user.pk %}">
-                    <span>삭제</span></a>
-            </div>
+            <a href="{% url 'accountapp:update' pk=target_user.pk %}">
+                <span>수정|</span></a>
+            <a href="{% url 'accountapp:delete' pk=target_user.pk %}">
+                <span>삭제</span></a>
             {% endif %}
         </div>
    </div>

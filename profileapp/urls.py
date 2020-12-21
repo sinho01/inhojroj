@@ -1,8 +1,10 @@
+from django.urls import path
 
+from profileapp.views import ProfileCreateView, ProfileUpdateView
 
-
-app_name = "profileapp"
+app_name = 'profileapp'
 
 urlpatterns = [
-    path('delete/<int:pk>', AccountDeleteView.as_view(), name='delete'),
+    path('create/', ProfileCreateView.as_view(), name='create'),
+    path('update/<int:pk>', ProfileUpdateView.as_view(), name='update'),
 ]

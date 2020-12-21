@@ -4,7 +4,7 @@ from django.urls import path
 from accountapp.views import hello_world, AccountDetailView, AccountUpdateView, AccountDeleteView
 from accountapp.views import AccountCreateView
 
-app_name = "accountapp"
+app_name = 'accountapp'
 # "accountapp:hello_world""
 urlpatterns = [
     path('hello_world/', hello_world, name='hello_world'),
