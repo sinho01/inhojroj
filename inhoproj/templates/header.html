@@ -3,7 +3,8 @@
         <h1 class="titles">주여정보(JuyeoInfo)</h1>
     </div>
     <div>
-        <span>차례1</span>|
+        <a href="{% url 'articleapp:list' %}">
+            <span>Article|</span></a>
         <span>차례2</span>|
         <span>차례3</span>||
         {% if not user.is_authenticated %}
