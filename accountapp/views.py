@@ -10,7 +10,7 @@ from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 
 from accountapp.decorators import account_ownership_required
-from accountapp.form import AccountUpdateForm
+from accountapp.forms import AccountUpdateForm
 from accountapp.models import HelloWorld
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
