@@ -2,21 +2,26 @@
     <div>
         <h1 class="titles">주여정보(JuyeoInfo)</h1>
     </div>
-    <div>
-        <a href="{% url 'articleapp:list' %}">
-            <span>Article|</span></a>
-        <span>차례2</span>|
-        <span>차례3</span>||
+    <div class="pragmatic_header_navbar">
+        <a href="{% url 'articleapp:list' %}" class="prgmatic_header_nav">
+            <span>Articles</span>
+        </a>
+        <a href="{% url 'projectapp:list' %}" class="prgmatic_header_nav">
+            <span>Projects</span>
+        </a>
+        <a href="{% url 'subscribeapp:list' %}" class="prgmatic_header_nav">
+            <span>Subscription</span>
+        </a>
         {% if not user.is_authenticated %}
-        <a href="{% url 'accountapp:login' %}?next={{ requst.path }}">
+        <a href="{% url 'accountapp:login' %}?next={{ requst.path }}" class="prgmatic_header_nav">
             <span>로그인|</span></a>
-        <a href="{% url 'accountapp:create' %}">
+        <a href="{% url 'accountapp:create' %}" class="prgmatic_header_nav">
             <span>회원가입</span></a>
         {% else %}
-        <a href="{% url 'accountapp:detail' pk=user.pk %}" >
+        <a href="{% url 'accountapp:detail' pk=user.pk %}" class="prgmatic_header_nav">
             <span>MyPage</span>
         </a>
-        <a href="{% url 'accountapp:logout' %}?next={{ requst.path }}">
+        <a href="{% url 'accountapp:logout' %}?next={{ requst.path }}" class="prgmatic_header_nav">
             <span>logout</span>
         </a>
         {% endif %}

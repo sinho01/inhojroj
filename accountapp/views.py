@@ -8,11 +8,17 @@ from django.urls import reverse, reverse_lazy
 
 # Create your views here.
 from django.utils.decorators import method_decorator
+from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm
 from accountapp.models import HelloWorld
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+
+from articleapp.models import Article
+from inhoproj.settings import env
+from projectapp.views import ProjectDetailView
+from subscribeapp.models import Subscription
 
 has_ownership = [login_required,account_ownership_required];
 
@@ -42,11 +48,16 @@ class AccountCreateView(CreateView) :
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/create.html'
 
-class AccountDetailView(DetailView) :
+class AccountDetailView(DetailView, MultipleObjectMixin) :
     model = User
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
 
+    paginate_by = env('PAGE_PER')
+
+    def get_context_data(self, **kwargs):
+        object_list = Article.objects.filter(writer=self.get_object())
+        return super(AccountDetailView, self).get_context_data(object_list=object_list, **kwargs)
 
 # @method_decorator(login_required,'get')
 # @method_decorator(login_required,'post')
@@ -76,7 +87,7 @@ class AccountUpdateView(UpdateView) :
 
 @method_decorator(has_ownership,'get')
 @method_decorator(has_ownership,'post')
-class AccountDeleteView(DeleteView) :
+class AccountDeleteView(DeleteView, MultipleObjectMixin) :
     model = User
     context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:login')

@@ -7,6 +7,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import RedirectView, ListView
 
 from articleapp.models import Article
+from inhoproj.settings import env
 from projectapp.models import Project
 from subscribeapp.models import Subscription
 
@@ -34,7 +35,7 @@ class SubscriptionListView(ListView):
     model = Article
     context_object_name = 'article_list'
     template_name = 'subscribeapp/list.html'
-    paginate_by = 5
+    paginate_by = env('PAGE_PER')
 
     def get_queryset(self):
         projects = Subscription.objects.filter(user=self.request.user).values_list('project')

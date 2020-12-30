@@ -10,6 +10,8 @@ from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
 from commentapp.forms import CommentCreationForm
 from articleapp.models import Article
+from inhoproj.settings import env
+
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
@@ -59,4 +61,4 @@ class ArticleListView(ListView):
     model = Article
     context_object_name = 'article_list'
     template_name = 'articleapp/list.html'
-    pagenate_by = 5
+    paginate_by = env('PAGE_PER')

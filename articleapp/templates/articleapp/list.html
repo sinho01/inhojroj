@@ -4,6 +4,7 @@
 {% block content %}
 
 <style>
+
     .container {
         padding: 0;
         margin: 0, auto;
@@ -26,13 +27,10 @@
       width: 100%;
       border-radius: 1rem;
     }
-</style>
 
+</style>
     {% if article_list %}
     <div class="container">
-  <!--    <div class="item1">-->
-  <!--      <img src = "http://picsum.photos/200/380" alt="">-->
-  <!--    </div>-->
         {% for article in article_list %}
         <a href="{% url 'articleapp:detail' pk=article.pk %}">
             {% include 'snippets/card.html' with article=article %}
@@ -54,5 +52,6 @@
         </a>
     </div>
 
-{% endblock %}
 
+
+{% endblock %}
