@@ -12,24 +12,29 @@ services:
       - 80:80
 
   django_container_gunicorn:
-    image: django_image:4
+    image: django_image:5
     networks:
       - django
     volumes:
       - static-volume:/home/inhoproj/staticfiles
       - media-volume:/home/inhoproj/media
-
+    secrets:
+      - MYSQL_PASSWORD
+      - DJANGO_SECRET_KEY
   mariadb:
     image: mariadb:10.5
     networks:
       - django
     volumes:
       - mariadb-volume:/var/lib/mysql
+    secrets:
+      - MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD
     environment:
-      MYSQL_ROOT_PASSWORD: tlsdlsgh!11
       MYSQL_DATABASE: djangodb
       MYSQL_USER: django
-      MYSQL_PASSWORD: tlsdlsgh!11
+      MYSQL_PASSWORD_FILE: /run/secrets/MYSQL_PASSWORD
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/MYSQL_ROOT_PASSWORD
 
 networks:
   django:
@@ -38,3 +43,11 @@ volumes:
   static-volume:
   media-volume:
   mariadb-volume:
+
+secrets:
+  DJANGO_SECRET_KEY:
+    external: true
+  MYSQL_PASSWORD:
+    external: true
+  MYSQL_ROOT_PASSWORD:
+    external: true

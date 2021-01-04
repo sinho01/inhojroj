@@ -1,5 +1,3 @@
-import os, environ
-
 from .base import *
 
 env = environ.Env(

@@ -14,8 +14,7 @@ RUN pip install -r requirements.txt
 
 RUN pip install mysqlclient
 
-RUN echo "SECRET_KEY=d@8sb8f-c$i_dpk9_vj9&zffuv0^zi1v@-hpdxs4xwe!&a!s)^" > .env
-RUN echo "PAGE_PER=25" >> .env
+RUN echo "PAGE_PER=25" > .env
 
 RUN python manage.py collectstatic
 
