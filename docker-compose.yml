@@ -1,0 +1,40 @@
+version: "3.7"
+services:
+  ngnix:
+    image: nginx:1.19.5
+    networks:
+      - django
+    volumes:
+      - /home/django_course/nginx.conf:/diff/etc/nginx/nginx.conf
+      - static-volume:/data/static
+      - media-volume:/data/media/
+    ports:
+      - 80:80
+
+  django_container_gunicorn:
+    image: django_image:4
+    networks:
+      - django
+    volumes:
+      - static-volume:/home/inhoproj/staticfiles
+      - media-volume:/home/inhoproj/media
+
+  mariadb:
+    image: mariadb:10.5
+    networks:
+      - django
+    volumes:
+      - mariadb-volume:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: tlsdlsgh!11
+      MYSQL_DATABASE: djangodb
+      MYSQL_USER: django
+      MYSQL_PASSWORD: tlsdlsgh!11
+
+networks:
+  django:
+
+volumes:
+  static-volume:
+  media-volume:
+  mariadb-volume:
