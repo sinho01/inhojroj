@@ -7,7 +7,7 @@ from django.views.generic import CreateView, DetailView, ListView
 from django.views.generic.list import MultipleObjectMixin
 
 from articleapp.models import Article
-from inhoproj.settings._settings import env
+from inhoproj.settings.base import env
 from projectapp.forms import ProjectCreationForm
 from projectapp.models import Project
 from subscribeapp.models import Subscription

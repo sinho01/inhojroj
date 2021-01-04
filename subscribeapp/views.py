@@ -7,7 +7,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import RedirectView, ListView
 
 from articleapp.models import Article
-from inhoproj.settings._settings import env
+from inhoproj.settings.base import env
 from projectapp.models import Project
 from subscribeapp.models import Subscription
 

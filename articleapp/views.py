@@ -10,7 +10,7 @@ from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
 from commentapp.forms import CommentCreationForm
 from articleapp.models import Article
-from inhoproj.settings._settings import env
+from inhoproj.settings.base import env
 
 
 @method_decorator(login_required, 'get')

@@ -16,7 +16,7 @@ from accountapp.models import HelloWorld
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from articleapp.models import Article
-from inhoproj.settings._settings import env
+from inhoproj.settings.base import env
 
 has_ownership = [login_required,account_ownership_required];
 
