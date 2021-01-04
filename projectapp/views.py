@@ -1,5 +1,4 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse
@@ -8,7 +7,7 @@ from django.views.generic import CreateView, DetailView, ListView
 from django.views.generic.list import MultipleObjectMixin
 
 from articleapp.models import Article
-from inhoproj.settings import env
+from inhoproj.settings._settings import env
 from projectapp.forms import ProjectCreationForm
 from projectapp.models import Project
 from subscribeapp.models import Subscription
